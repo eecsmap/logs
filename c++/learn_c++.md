@@ -49,6 +49,12 @@ Videos
 Sites
 =====
 * [ ] https://en.cppreference.com/w/
+  * [ ] [algorithm](https://en.cppreference.com/w/cpp/algorithm)
+* [ ] [Compiler Explorer](https://godbolt.org/)
+* [ ] [C++ Core Guidelines](https://github.com/isocpp/CppCoreGuidelines/blob/master/CppCoreGuidelines.md#S-enum)
+* [ ] [codewar](https://www.codewars.com/dashboard)
+* [ ] [leetcode solution](https://walkccc.me/LeetCode/)
+* [ ] [CLRS solution](https://walkccc.me/CLRS/)
 
 Projects
 ========
