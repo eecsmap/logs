@@ -10,6 +10,8 @@
 * [ ] chapter 8.
 * [ ] chapter 9.
 * [ ] chapter 10. Parallel algorithms
+  * Cannot do it on my macOS since libc++ does not support execution policy yet.
+  * ref: https://en.cppreference.com/w/cpp/compiler_support
 * [ ] chapter 11.
 * [ ] appendix a.
 * [ ] appendix b.
