@@ -65,7 +65,10 @@ Smart Pointers
 
 Rvalue References, Move Semantics, and Perfect Forwarding
 ---------------------------------------------------------
-* [ ] Item 23:
+* a parameter is always an lvalue, even if its type is an rvalue reference.
+* [x] Item 23: Understand `std::move` and `std::forward`.
+  * `std::move` and `std::forward` generate no code, they are function templates do casting
+  * rvalue reference returned from functions are rvalues.
 * [ ] Item 24:
 * [ ] Item 25:
 * [ ] Item 26:
