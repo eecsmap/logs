@@ -69,7 +69,11 @@ Rvalue References, Move Semantics, and Perfect Forwarding
 * [x] Item 23: Understand `std::move` and `std::forward`.
   * `std::move` and `std::forward` generate no code, they are function templates do casting
   * rvalue reference returned from functions are rvalues.
-* [ ] Item 24:
+* [x] Item 24: Distinguish universal references from rvalue references.
+  * auto&& is universal reference
+  * if type deduction does not occur -> rvalue references
+  * universal references -> rvalue reference if inited with rvalues
+  * universal references -> lvalue reference if inited with lvalues
 * [ ] Item 25:
 * [ ] Item 26:
 * [ ] Item 27:
