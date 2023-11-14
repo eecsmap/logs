@@ -18,6 +18,7 @@ Probability
 Discrete Math
 =============
 * [ ] ucb 55
+* [ ] [cmu 15-151](https://www.math.cmu.edu/~jmackey/151_128/homework.html)
 
 Abstract Algebra
 ================

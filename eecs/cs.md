@@ -1,6 +1,6 @@
 Organization & Architecture
 ===========================
-* [ ] ucb 151
+* [ ] ucb 151 [fa23](https://inst.eecs.berkeley.edu/~eecs151/fa23/)
   * [ ] [uart on 16550](http://byterunner.com/16550.html)
 * [ ] [ucb 152](https://inst.eecs.berkeley.edu/~cs152/sp23/)
 * [ ] verilog exercise [hdlbits](https://hdlbits.01xz.net/wiki/Main_Page)
@@ -40,6 +40,7 @@ Security
 Databases
 =========
 * [ ] [cmu 15-445](https://15445.courses.cs.cmu.edu/fall2023/) 课程代码在FAQ中
+  * [ ] [gradescope](https://www.gradescope.com/courses/585997) projects are available
 * [ ] ucb 186
 
 Compilers
@@ -91,3 +92,7 @@ Software Engineering
 ====================
 * [ ] [cmpt373](https://www2.cs.sfu.ca/~wsumner/teaching/373/23/schedule.html)
 * [ ] [cmpt473](https://www2.cs.sfu.ca/~wsumner/teaching/473/23/schedule.html)
+
+Game
+====
+* [ ] [game 105](https://www.bilibili.com/video/BV1GG4y1p7fF?p=1)
