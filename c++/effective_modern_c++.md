@@ -83,8 +83,8 @@ Rvalue References, Move Semantics, and Perfect Forwarding
 
 Lambda Expressions
 ------------------
-* [ ] Item 31:
-* [ ] Item 32:
+* [x] Item 31: Avoid default capture modes.
+* [x] Item 32: Use init capture to move objects into closures.
 * [ ] Item 33:
 * [ ] Item 34:
 

@@ -30,6 +30,8 @@ Networks
   * [ ] [Sprout](http://alfalfa.mit.edu/)
   * [ ] [SDN](https://hackmd.io/@pmanzoni/SyWm3n0HH)
 * [ ] [lxc](https://raydenchia.com/linux-containers-lxc/)
+* [ ] [Top Down Approach](https://gaia.cs.umass.edu/kurose_ross/index.php)
+* [ ] [System Approach](https://book.systemsapproach.org/)
 
 Security
 ========
@@ -59,6 +61,7 @@ Programming Languages
 Distributed
 ===========
 * [ ] mit 6.824
+* [ ] [Distributed-Systems](https://www.amazon.com/Distributed-Systems-Maarten-van-Steen/dp/1543057381/ref=pd_bxgy_img_sccl_1/138-6733477-0811551?pd_rd_w=mSYSk&content-id=amzn1.sym.7746dde5-5539-43d2-b75f-28935d70f100&pf_rd_p=7746dde5-5539-43d2-b75f-28935d70f100&pf_rd_r=02MRN8EBR7CDF4SP8Z15&pd_rd_wg=gdhCi&pd_rd_r=084fc77c-cbd2-4325-8d04-e6fedd38fc80&pd_rd_i=1543057381&psc=1)
 
 Data Structures & Algorithms
 ============================
