@@ -3,7 +3,8 @@ Effective Modern C++
 
 Deducing Types
 --------------
-* [x] Item 1: Understand template type deduction.
+* [x] Item 1: Understand **template** type deduction.
+  * `template<typename T> void f(ParamType param);`, use `f(expr)` to deduce types of `T` and `ParamType`
   * `template<class T> void f(T& t); int x; f(x);`, `T` is `int`
   * `template<class T> void f(T& t); const int cx; f(cx);`, `T` is `const int`
   * `template<class T> void f(T& t); const int& rx = x; f(rx);`, `T` is `const int`
@@ -20,7 +21,23 @@ Deducing Types
   * `template<class T> void f(T t); f(rx);` `T` is `int`, `t` is `int`
   * `template<class T> void f(T t); f(array);` `T` is `decltype(&array[0])`
   * `template<class T> void f(T& t); f(array);` `T` is `decltype(array)`
-* [ ] Item 2: Understand `auto` type deduction.
+* [x] Item 2: Understand `auto` type deduction.
+  * `auto` type deduction is almost the same as template type deduction.
+  * `const auto& cx = expr`, `auto` is the `T` in template, and `const auto&` is the **type specifier** `paramType` in template.
+  * `auto&& rx = x` here `rx` is `int&`
+  * `auto&& rx = cx` here `rx` is `const int&`
+  * `auto&& rx = 42` here `rx` is `int&&`
+  * `const char s[] = "hello";`
+  * `auto x = s` here `x` is `const char *`
+  * `auto& x = s` here `x` is `const char(&)[6]`
+  * `void someFunc(int, double);`
+  * `auto f = someFunc` here `f` is `void(*)(int, double)`
+  * `auto& f = someFunc` here `f` is `void(&)(int, double)`
+  * `auto v = {1, 2, 3}`, `v` is `std::initializer_list<int>`
+  * `template<class T> void f(T t)` cannot accept `f({1, 2, 3})`, it cannot deduce type of `T`
+  * `template<class T> void f(std::initializer_list<T> t)` accepts `f({1, 2, 3})`
+  * the only real difference between auto and template type deduction is that auto assumes that a braced initializer represents a std::initializer_list, but template type deduction doesn’t.
+  * `auto` used as lambda parameter or return type cannot deduce to `std::initializer_list`, using template type deduction instead of auto type deduction.
 * [ ] Item 3: Understand `decltype`
 * [ ] Item 4: Know how to view deduced types.
 
