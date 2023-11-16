@@ -3,7 +3,23 @@ Effective Modern C++
 
 Deducing Types
 --------------
-* [ ] Item 1: Understand template type deduction.
+* [x] Item 1: Understand template type deduction.
+  * `template<class T> void f(T& t); int x; f(x);`, `T` is `int`
+  * `template<class T> void f(T& t); const int cx; f(cx);`, `T` is `const int`
+  * `template<class T> void f(T& t); const int& rx = x; f(rx);`, `T` is `const int`
+  * `template<class T> void f(const T& t); f(x);`, `T` is `int`
+  * `template<class T> void f(const T& t); f(cx);`, `T` is `int`
+  * `template<class T> void f(const T& t); f(rx);`, `T` is `int`
+  * change `T&` to `T*` pretty much the same
+  * `template<class T> void f(T&& t); f(x);` `T` is `int&`, `t` is `int&`
+  * `template<class T> void f(T&& t); f(cx);` `T` is `const int&`, `t` is `const int&`
+  * `template<class T> void f(T&& t); f(rx);` `T` is `const int&`, `t` is `const int&`
+  * `template<class T> void f(T&& t); f(42);` `T` is `int`, `t` is `int&&`
+  * `template<class T> void f(T t); f(x);` `T` is `int`, `t` is `int`
+  * `template<class T> void f(T t); f(cx);` `T` is `int`, `t` is `int`
+  * `template<class T> void f(T t); f(rx);` `T` is `int`, `t` is `int`
+  * `template<class T> void f(T t); f(array);` `T` is `decltype(&array[0])`
+  * `template<class T> void f(T& t); f(array);` `T` is `decltype(array)`
 * [ ] Item 2: Understand `auto` type deduction.
 * [ ] Item 3: Understand `decltype`
 * [ ] Item 4: Know how to view deduced types.
@@ -78,6 +94,13 @@ Rvalue References, Move Semantics, and Perfect Forwarding
 * [ ] Item 26:
 * [ ] Item 27:
 * [ ] Item 28:
+  * `foo(Bar())` the `Bar()` is rvalue, so if we have both `foo(Bar bar)` and `foo(Bar&& bar)`, then compiler will be confused.
+  * `foo(Bar())` will pick up `foo(const Bar& bar)` if `foo(Bar&& bar)` does not exist, since it can bind rvalue to a const lvalue ref.
+  * `foo(bar)` `bar` is lvalue, it will use `foo(Bar bar)` when both `foo(Bar bar)` and `foo(Bar&& bar)` provided.
+  * `foo(cbar)` will confuse compiler when `foo(Bar bar)`, `foo(const Bar& bar)` both provided.
+  * `foo(bar)` will use `foo(Bar& bar)`, when both `foo(Bar& bar)` and `foo(const Bar& bar)` exist.
+  * `foo(bar)` will use `foo(const Bar& bar)` when `foo(Bar& bar)` is not available.
+  * `foo(bar)` will confuse compiler when `foo(Bar bar)` coexists with any of `foo(Bar& bar)` or `foo(const Bar& bar)` 
 * [ ] Item 29:
 * [ ] Item 30:
 
@@ -85,7 +108,7 @@ Lambda Expressions
 ------------------
 * [x] Item 31: Avoid default capture modes.
 * [x] Item 32: Use init capture to move objects into closures.
-* [ ] Item 33:
+* [x] Item 33: Use `decltype` on `auto&&` parameters to `std::foward` them.
 * [ ] Item 34:
 
 The Concurrency API
