@@ -38,8 +38,14 @@ Deducing Types
   * `template<class T> void f(std::initializer_list<T> t)` accepts `f({1, 2, 3})`
   * the only real difference between auto and template type deduction is that auto assumes that a braced initializer represents a std::initializer_list, but template type deduction doesn’t.
   * `auto` used as lambda parameter or return type cannot deduce to `std::initializer_list`, using template type deduction instead of auto type deduction.
-* [ ] Item 3: Understand `decltype`
-* [ ] Item 4: Know how to view deduced types.
+* [x] Item 3: Understand `decltype`
+  * `decltype(expr)` returns `T&` if `expr` is lvalue but not a name.
+  * `decltype(id)` returns `T` if `id` is an identifier.
+  * `decltype(auto)` -> `decltype(std::forward<T>(t))`
+* [x] Item 4: Know how to view deduced types.
+  * `template<typename T> class DT; DT<decltype(x)> xtype;`
+  * `std::type_info::name` removes reference, then removes constness.
+  * use `boost::typeindex::type_id_with_cvr<T>().pretty_name()` to check type of `T`, `#include <boost/type_index.hpp>`
 
 auto
 ----
