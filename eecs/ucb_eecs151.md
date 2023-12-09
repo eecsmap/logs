@@ -47,3 +47,15 @@ Create private clone of labs and project as:
 * https://github.com/eecsmap/ucb_eecs151_2022_fall_fpga_labs (from https://github.com/EECS150/fpga_labs_fa22)
 * https://github.com/eecsmap/ucb_eecs151_2022_fall_fpga_project (from https://github.com/EECS150/fpga_project_skeleton_fa22)
 
+## lab1
+on linux
+```
+make setup
+make synth
+make program
+```
+
+on windows with Vivado GUI
+* src/*.v as design files
+* sim/*.v as simulation files
+* src/*.xdc as constraints file
