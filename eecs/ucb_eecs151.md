@@ -41,3 +41,9 @@ set_property -dict {PACKAGE_PIN R14 IOSTANDARD LVCMOS33} [get_ports {led}]
 * open target and auto connect
 ![image](https://github.com/eecsmap/logs/assets/71915887/36c7ea75-e592-4364-9382-e366a01aab7d)
 * program device and verify the function on board
+
+## prepare the labs and project
+Create private clone of labs and project as:
+* https://github.com/eecsmap/ucb_eecs151_2022_fall_fpga_labs (from https://github.com/EECS150/fpga_labs_fa22)
+* https://github.com/eecsmap/ucb_eecs151_2022_fall_fpga_project (from https://github.com/EECS150/fpga_project_skeleton_fa22)
+
