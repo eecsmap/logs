@@ -47,6 +47,14 @@ Create private clone of labs and project as:
 * https://github.com/eecsmap/ucb_eecs151_2022_fall_fpga_labs (from https://github.com/EECS150/fpga_labs_fa22)
 * https://github.com/eecsmap/ucb_eecs151_2022_fall_fpga_project (from https://github.com/EECS150/fpga_project_skeleton_fa22)
 
+## basic concepts
+Phases:
+* simulation: verify the design using test data
+* synthesis: translate the design into gates and wire, (LUTs, FFs etc)
+* implementation: place and route
+* bitstream generating: serialized result
+* programming: load the result into FPGA board
+
 ## lab1
 on linux
 ```
@@ -59,3 +67,52 @@ on windows with Vivado GUI
 * src/*.v as design files
 * sim/*.v as simulation files
 * src/*.xdc as constraints file
+
+## lab2
+Structural and Behavioral: structural represtation is something called declarative in software programming, while behavioral imperative.
+
+```
+make lint - Lint your Verilog with Verilator; checks for common Verilog typos, mistakes, and syntax errors
+make elaborate - Elaborate (but don't synthesize) the Verilog with Vivado and open the GUI to view the schematic
+make synth - Synthesize z1top and put logs and outputs in build/synth
+make impl - Implement (place and route) the design, generate the bitstream, and put logs and outputs in build/impl
+make program - Program the FPGA with the bitstream in build/impl
+make program-force - Program the FPGA with the bitstream in build/impl without re-running synthesis and implementation if the source Verilog has changed
+make vivado - Launch the Vivado GUI
+```
+install verilator to try `make lint`: `sudo apt install verilator`
+install iverilog to do test: `sudo apt install iverilog`
+
+terms:
+* schematic
+* HDL (hardware definition language)
+* RTL (register-transfer level)
+
+Basic building blocks: Module (as function in software programming language)
+
+* check examples on how to write module
+* check examples on how to write test on board
+* check examples on how to write testbench
+
+system tasks starting with '$' are implemented by simulator
+* $dumpfile
+* $dumpvars
+
+We can advance simulation time using delay statements.
+
+```
+assert(sum == 'd1) else $display("ERROR: Expected sum to be 1, actual value: %d", sum);
+$error("error number: %d", 42); // error shows error message with line number
+```
+these print functions run when you do `vvp demo.tbi`
+```
+iverilog demo.v -o demo.tbi -g2012
+vvp demo.tbi
+```
+You need to do `-g2012` in order to use `assert`
+
+for test
+* `$urandom()` return unsigned 32-bit integers.
+
+
+
