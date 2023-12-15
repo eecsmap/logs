@@ -114,5 +114,10 @@ You need to do `-g2012` in order to use `assert`
 for test
 * `$urandom()` return unsigned 32-bit integers.
 
-
+## reading list
+* https://inst.eecs.berkeley.edu/~eecs151/fa22/files/verilog/Verilog_Primer_Slides.pdf
+* https://inst.eecs.berkeley.edu/~eecs151/fa22/files/verilog/always_at_blocks.pdf
+* https://inst.eecs.berkeley.edu/~eecs151/fa22/files/verilog/wire_vs_reg.pdf
+* https://inst.eecs.berkeley.edu/~eecs151/fa22/files/verilog/verilog_fsm.pdf
+* https://www.youtube.com/watch?v=1FiaAPFCMFU
 
