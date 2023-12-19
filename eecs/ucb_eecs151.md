@@ -114,6 +114,10 @@ You need to do `-g2012` in order to use `assert`
 for test
 * `$urandom()` return unsigned 32-bit integers.
 
+## lab5
+A ready-valid transaction only occurs when both ready and valid are high on a rising clock edge.
+If both ready and valid are high on a rising edge, the source can assume that the sink has received and internally stored the bits on data.
+
 ## reading list
 * https://inst.eecs.berkeley.edu/~eecs151/fa22/files/verilog/Verilog_Primer_Slides.pdf
 * https://inst.eecs.berkeley.edu/~eecs151/fa22/files/verilog/always_at_blocks.pdf
