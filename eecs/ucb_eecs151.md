@@ -118,6 +118,37 @@ for test
 A ready-valid transaction only occurs when both ready and valid are high on a rising clock edge.
 If both ready and valid are high on a rising edge, the source can assume that the sink has received and internally stored the bits on data.
 
+* The baudrate is the number of bits sent per second; in this lab the baudrate will be 115200
+* both sides must agree on a baudrate for this scheme to be feasible.
+
+```
+    // we might think reset should clean bit_count and put down
+    always @(reset) begin
+        bit_count <= 0;
+    end
+    // then we realize bit_count should also update when bit_sent
+    always @(posedge reset or posedge bit_sent) begin
+        if (reset) bit_count <= 0;
+        else if (bit_sent) bit_count <= bit_count + 1;
+        if (bit_count == BIT_COUNT_MAX - 1) bit_count <= 0;
+    end
+    // which could be simplified as
+    always @(posedge reset or posedge bit_sent) begin
+        if (reset || bit_count == BIT_COUNT_MAX - 1) bit_count <= 0;
+        else if (bit_sent) bit_count <= bit_count + 1;
+    end
+```
+
+---
+This is important  :)
+```
+    assign data_in_valid = ~tx_fifo_empty_delayed;
+    always @(posedge CLK_125MHZ_FPGA) begin
+        tx_fifo_empty_delayed <= tx_fifo_empty;
+    end
+```
+
+
 ## reading list
 * https://inst.eecs.berkeley.edu/~eecs151/fa22/files/verilog/Verilog_Primer_Slides.pdf
 * https://inst.eecs.berkeley.edu/~eecs151/fa22/files/verilog/always_at_blocks.pdf
