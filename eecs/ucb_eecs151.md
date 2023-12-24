@@ -148,6 +148,8 @@ This is important  :)
     end
 ```
 
+* read the test bench examples in lab5, especially the mem_controller_tb.v and the system_tb.v
+
 
 ## reading list
 * https://inst.eecs.berkeley.edu/~eecs151/fa22/files/verilog/Verilog_Primer_Slides.pdf
