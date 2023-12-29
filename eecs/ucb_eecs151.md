@@ -159,3 +159,20 @@ This is important  :)
 * https://www.youtube.com/watch?v=1FiaAPFCMFU
 * https://inst.eecs.berkeley.edu/~eecs151/fa21/files/verilog/ready_valid_interface.pdf
 
+## project
+before testing using
+```
+cd software/riscv-isa-tests && make
+```
+
+run
+```
+sudo apt-get install git build-essential gdb-multiarch qemu-system-misc gcc-riscv64-linux-gnu binutils-riscv64-linux-gnu```
+sudo apt install gcc-riscv64-unknown-elf
+```
+
+issue:
+```
+riscv64-unknown-elf-bin2hex: command not found
+```
+copy a python script from eda server and rename it to this name. Find it in dropbox/shared/courses/ucb/eecs151/eecs151_fa22/
