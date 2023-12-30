@@ -176,3 +176,11 @@ issue:
 riscv64-unknown-elf-bin2hex: command not found
 ```
 copy a python script from eda server and rename it to this name. Find it in dropbox/shared/courses/ucb/eecs151/eecs151_fa22/
+
+run
+```
+make sim/cpu_tb.fst
+make isa-tests -B && grep -r -i "\(timeout\)\|\(failed\)" sim/isa/*.log
+make c-tests
+make sim/echo_tb.fst
+```
