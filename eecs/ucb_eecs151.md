@@ -180,7 +180,12 @@ copy a python script from eda server and rename it to this name. Find it in drop
 run
 ```
 make sim/cpu_tb.fst
+(cd ../software/riscv-isa-tests/ && make)
 make isa-tests -B && grep -r -i "\(timeout\)\|\(failed\)" sim/isa/*.log
+(cd ../software/c_tests/ && make)
 make c-tests
+(cd ../software/echo/ && make)
 make sim/echo_tb.fst
+(cd ../software/uart_parse/ && make)
+make sim/uart_parse_tb.fst
 ```
