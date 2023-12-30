@@ -179,13 +179,22 @@ copy a python script from eda server and rename it to this name. Find it in drop
 
 run
 ```
-make sim/cpu_tb.fst
+make sim/cpu_tb.fst -B
 (cd ../software/riscv-isa-tests/ && make)
 make isa-tests -B && grep -r -i "\(timeout\)\|\(failed\)" sim/isa/*.log
 (cd ../software/c_tests/ && make)
 make c-tests
 (cd ../software/echo/ && make)
-make sim/echo_tb.fst
+make sim/echo_tb.fst -B
 (cd ../software/uart_parse/ && make)
-make sim/uart_parse_tb.fst
+make sim/uart_parse_tb.fst -B
+(cd ../software/bios && make)
+make sim/bios_tb.fst -B
+./scripts/hex_to_serial ../software/echo/echo.hex 30000000
+151> jal 10000000
+(cd ../software/mmult/ && make)
+./scripts/hex_to_serial ../software/mmult/mmult.hex 30000000
 ```
+
+checkpoint 1&2 done!
+
