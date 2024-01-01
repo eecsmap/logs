@@ -11,6 +11,8 @@
 ![image](https://github.com/eecsmap/logs/assets/71915887/85b2fa8f-4c0e-434a-9f46-8e2ccbe69170)
 
 ## verify
+![image](https://github.com/eecsmap/logs/assets/71915887/2b7cb51b-733d-49de-8fa6-264e71f181da)
+
 * `git clone https://github.com/eecsmap/fpga_101`
 * `cd fpga_101/01_button_led/src`
 * `make build`
