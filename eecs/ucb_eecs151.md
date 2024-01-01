@@ -8,6 +8,7 @@
 * if cannot find the part or board, try `git clone https://github.com/cathalmccabe/pynq-z1_board_files`
 * then copy pynq-z1 into {Vivado install directory}\data\boards\board_files, if board_files does not exist, create it.
 * This may be necessary: https://digilent.com/reference/programmable-logic/guides/install-cable-drivers
+![image](https://github.com/eecsmap/logs/assets/71915887/85b2fa8f-4c0e-434a-9f46-8e2ccbe69170)
 
 ## verify
 * `git clone https://github.com/eecsmap/fpga_101`
