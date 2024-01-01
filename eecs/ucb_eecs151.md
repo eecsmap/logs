@@ -9,6 +9,12 @@
 * then copy pynq-z1 into {Vivado install directory}\data\boards\board_files, if board_files does not exist, create it.
 * This may be necessary: https://digilent.com/reference/programmable-logic/guides/install-cable-drivers (otherwise hardware manager might not be able to find the target board)
 * `/tools/Xilinx/Vivado/2023.2/data/xicom/cable_drivers/lin64/install_script/install_drivers$ sudo ./install_drivers`
+
+to allow using screen to the serial terminal
+```
+sudo adduser $USER dialout
+```
+
 ![image](https://github.com/eecsmap/logs/assets/71915887/85b2fa8f-4c0e-434a-9f46-8e2ccbe69170)
 
 ## verify
