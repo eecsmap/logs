@@ -161,6 +161,10 @@ This is important  :)
 * https://inst.eecs.berkeley.edu/~eecs151/fa21/files/verilog/ready_valid_interface.pdf
 
 ## project
+```
+git submodule update --init --recursive
+```
+
 before testing using
 ```
 cd software/riscv-isa-tests && make
