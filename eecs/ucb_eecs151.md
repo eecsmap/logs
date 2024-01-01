@@ -160,19 +160,33 @@ This is important  :)
 * https://www.youtube.com/watch?v=1FiaAPFCMFU
 * https://inst.eecs.berkeley.edu/~eecs151/fa21/files/verilog/ready_valid_interface.pdf
 
+```
+sudo apt-get install git make
+```
+
 ## project
+
+run
+```
+sudo apt install gcc-riscv64-unknown-elf
+sudo apt install python3-pip
+pip install pyserial
+```
+
 ```
 git submodule update --init --recursive
+```
+under software folder, run
+```
+cd software
+for i in `ls`; do (cd $i && make -B); done
+cd c_tests
+for i in `ls`; do (cd $i && make -B); done
 ```
 
 before testing using
 ```
 cd software/riscv-isa-tests && make
-```
-
-run
-```
-sudo apt-get install git build-essential gcc-riscv64-unknown-elf
 ```
 
 issue:
@@ -184,15 +198,10 @@ copy a python script from eda server and rename it to this name. Find it in drop
 run
 ```
 make sim/cpu_tb.fst -B
-(cd ../software/riscv-isa-tests/ && make)
 make isa-tests -B && grep -r -i "\(timeout\)\|\(failed\)" sim/isa/*.log
-(cd ../software/c_tests/ && make)
-make c-tests
-(cd ../software/echo/ && make)
+make c-tests -B
 make sim/echo_tb.fst -B
-(cd ../software/uart_parse/ && make)
 make sim/uart_parse_tb.fst -B
-(cd ../software/bios && make)
 make sim/bios_tb.fst -B
 ./scripts/hex_to_serial ../software/echo/echo.hex 30000000
 151> jal 10000000
