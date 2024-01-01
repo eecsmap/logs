@@ -168,8 +168,7 @@ cd software/riscv-isa-tests && make
 
 run
 ```
-sudo apt-get install git build-essential gdb-multiarch qemu-system-misc gcc-riscv64-linux-gnu binutils-riscv64-linux-gnu```
-sudo apt install gcc-riscv64-unknown-elf
+sudo apt-get install git build-essential gcc-riscv64-unknown-elf
 ```
 
 issue:
