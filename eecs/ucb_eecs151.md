@@ -1,3 +1,5 @@
+This was originally written for vivado 2023.2 on ubuntu 23.10. It proves working with vivado 2024.1 on ubuntu 24.04.
+
 ## setup on Ubuntu (23.10)
 1. download latest Vivado ML installer from https://www.xilinx.com/support/download.html (for now it is [2023.2](https://www.xilinx.com/member/forms/download/xef.html?filename=FPGAs_AdaptiveSoCs_Unified_2023.2_1013_2256_Lin64.bin))
 * `sudo bash {your_installer_file}.bin` and install it to `/opt/Xilinx` with options as the following screenshot
