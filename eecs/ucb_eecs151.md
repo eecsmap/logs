@@ -3,12 +3,15 @@
 * `sudo bash {your_installer_file}.bin` and install it to `/opt/Xilinx` with options as the following screenshot
 * ![image](https://github.com/eecsmap/logs/assets/71915887/d7d2e6e7-ab4b-4a32-9c49-7cabf5c1ecc6)
 * add `/opt/Xilinx/Vivado/2023.2/bin` into $PATH so that you can run `vivado`
-* if running `vivado` complains missing of libtinfo, then `cd /lib/x86_64-linux-gnu/ && sudo ln -s libtinfo.so libtinfo.so.5`
+* if running `vivado` complains missing of libtinfo, then
+  * `cd /lib/x86_64-linux-gnu/ && sudo ln -s libtinfo.so libtinfo.so.5`
+  * `sudo ln -s libtinfo.so.6 libtinfo.so.5` in vivado 2024.1
 * try verify the setup with instructions in section **verify**
-* if cannot find the part or board, try `git clone https://github.com/cathalmccabe/pynq-z1_board_files` (It seems I don't need it with vivado 2023.2)
-* then copy pynq-z1 into {Vivado install directory}\data\boards\board_files, if board_files does not exist, create it.
-* This may be necessary: https://digilent.com/reference/programmable-logic/guides/install-cable-drivers (otherwise hardware manager might not be able to find the target board)
-* `/tools/Xilinx/Vivado/2023.2/data/xicom/cable_drivers/lin64/install_script/install_drivers$ sudo ./install_drivers`
+* We do NOT need it with vivado 2023.2 or 2024.1:
+  * `git clone https://github.com/cathalmccabe/pynq-z1_board_files`
+  * then copy pynq-z1 into {Vivado install directory}\data\boards\board_files, if board_files does not exist, create it.
+* This is necessary: https://digilent.com/reference/programmable-logic/guides/install-cable-drivers (otherwise hardware manager can not recognize the target board)
+  * `/tools/Xilinx/Vivado/2023.2/data/xicom/cable_drivers/lin64/install_script/install_drivers$ sudo ./install_drivers`
 
 to allow using screen to the serial terminal
 ```
