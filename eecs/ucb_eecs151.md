@@ -190,6 +190,7 @@ pip install pyserial
 ```
 git submodule update --init --recursive
 ```
+
 under software folder, run
 ```
 cd software
@@ -210,6 +211,14 @@ riscv64-unknown-elf-bin2hex: command not found
 copy a python script from eda server and rename it to this name. Find it in dropbox/shared/courses/ucb/eecs151/eecs151_fa22/
 
 actually you can follow here: https://inst.eecs.berkeley.edu/~eecs151/fa23/static/fpga/project/docs/local_dev/
+
+```
+complains about:
+* extension `zifencei' required
+* extension zicsr' required
+```
+search `-march=rv32i` and replace it as `-march=rv32i_zicsr_zifencei`
+
 
 run
 ```
