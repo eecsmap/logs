@@ -219,6 +219,10 @@ complains about:
 ```
 search `-march=rv32i` and replace it as `-march=rv32i_zicsr_zifencei`
 
+install iverilog
+```
+sudo apt install iverilog
+```
 
 run
 ```
