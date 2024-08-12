@@ -126,21 +126,14 @@ If it works, then you should be able to push the right most little button at the
 
 --------
 
-# Verify your installation
+# Verify your installation with a Vivado project
 
-## verify without a GUI
-![image](https://github.com/eecsmap/logs/assets/71915887/2b7cb51b-733d-49de-8fa6-264e71f181da)
-
-* `git clone https://github.com/eecsmap/fpga_101`
-* `cd fpga_101/01_button_led/src`
-* `make build`
-
-## Verify with a Vivado project
 * launch vivado
 * create a new RTL project
 ![image](https://github.com/eecsmap/logs/assets/71915887/03205fc5-b504-46a7-aa59-5d30cd970d5a)
 ![image](https://github.com/eecsmap/logs/assets/71915887/56abc386-6b70-4cff-9aef-1cc30de233dc)
 * add a top module file: top.v
+
 ```
 module top(
     input button,
@@ -149,11 +142,14 @@ module top(
     assign led = button;
 endmodule
 ```
+
 * add the constraints file: constraints.xdc
+
 ```
 set_property -dict {PACKAGE_PIN D19 IOSTANDARD LVCMOS33} [get_ports {button}]
 set_property -dict {PACKAGE_PIN R14 IOSTANDARD LVCMOS33} [get_ports {led}]
 ```
+
 * pick up the part: `xc7z020clg400-1`
 ![image](https://github.com/eecsmap/logs/assets/71915887/bed249fe-8cc5-46bc-9eda-a962be52d4ff)
 * generate bitstream
