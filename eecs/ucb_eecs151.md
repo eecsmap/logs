@@ -4,9 +4,13 @@ According to https://docs.amd.com/r/en-US/ug973-vivado-release-notes-install-lic
 , the most recent ubuntu version supported by Vivado 2024.1 is the 22.04.3 LTS.
 But it works fine on ubuntu 22.04.4 LTS.
 
-## Download FPGAs_AdaptiveSoCs_Unified_2024.1_0522_2023.tar.gz
+## Download the installer
 
 download Vivado ML installer from https://www.xilinx.com/support/download.html
+
+At the time of this writing, the most recent version is 2024.1.
+
+The package file is FPGAs_AdaptiveSoCs_Unified_2024.1_0522_2023.tar.gz
 
 It is about 108GB.
 
