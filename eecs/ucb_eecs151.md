@@ -34,6 +34,13 @@ If you look carefully you will see in the welcome dialog:
 > Note: This installation program will not install cable drivers on Linux. This item will need to be installed separately, with administrative privileges.
 
 We only need to install Devices->Production Devices->SoCs->Zynq-7000
+![Screenshot from 2024-08-11 15-43-07](https://github.com/user-attachments/assets/7e9ff32e-2cee-4d67-9a04-d18af06a0c43)
+![Screenshot from 2024-08-11 15-43-21](https://github.com/user-attachments/assets/1c68aafd-58d4-4c06-9a24-8158290bf311)
+![Screenshot from 2024-08-11 15-43-24](https://github.com/user-attachments/assets/847a5766-5bd3-4793-87b2-3483da65737f)
+![Screenshot from 2024-08-11 15-43-53](https://github.com/user-attachments/assets/39ebf9df-2d2f-4fe5-8aec-f9daefa9eed7)
+![Screenshot from 2024-08-11 15-44-25](https://github.com/user-attachments/assets/5b9226f2-b671-4120-b1cb-5284207bb4c3)
+![Screenshot from 2024-08-11 15-45-54](https://github.com/user-attachments/assets/06cfd5ff-833d-4a49-a42f-7ca53b12fe61)
+![Screenshot from 2024-08-11 15-45-59](https://github.com/user-attachments/assets/47cdf962-f8e7-4200-8460-6612c1509250)
 
 After installed, it takes 44GB.
 
@@ -44,6 +51,8 @@ After installed, it takes 44GB.
 ```
 ./xsetup -b ConfigGen -p 'Vivado' -e 'Vivado ML Standard' -l $HOME/tools/Xilinx
 ```
+
+
 
 Find it as `~/.Xilinx/install_config.txt`, tail it to meet your need. The one matters most to me is to make sure only Zynq-7000 is selected.
 
