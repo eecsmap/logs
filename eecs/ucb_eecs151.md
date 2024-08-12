@@ -6,6 +6,8 @@ But it works fine on ubuntu 22.04.4 LTS.
 
 ## Download FPGAs_AdaptiveSoCs_Unified_2024.1_0522_2023.tar.gz
 
+download Vivado ML installer from https://www.xilinx.com/support/download.html
+
 It is about 108GB.
 
 ## Extract the files
