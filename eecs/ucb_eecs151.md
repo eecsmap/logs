@@ -1,4 +1,115 @@
-This was originally written for vivado 2023.2 on ubuntu 23.10. It proves working with vivado 2024.1 on ubuntu 24.04.
+# Install Vivado 2024.1 on ubuntu 22.04.4 LTS
+
+According to https://docs.amd.com/r/en-US/ug973-vivado-release-notes-install-license/Supported-Operating-Systems
+, the most recent ubuntu version supported by Vivado 2024.1 is the 22.04.3 LTS.
+But it works fine on ubuntu 22.04.4 LTS.
+
+## Download FPGAs_AdaptiveSoCs_Unified_2024.1_0522_2023.tar.gz
+
+It is about 108GB.
+
+## Extract the files
+
+When extracted, the folder also takes about 108GB.
+
+```
+tar xfz /media/engineer/data/Data/FPGAs_AdaptiveSoCs_Unified_2024.1_0522_2023.tar.gz
+```
+
+## Install on machine with GUI
+
+Yes, you can do everything without a GUI. If that is what you want, go [here](#install-without-gui)
+
+Now let's install Vivado in the normal interactive way.
+
+### run setup to launch GUI installer
+
+```
+cd FPGAs_AdaptiveSoCs_Unified_2024.1_0522_2023
+./xsetup
+```
+
+If you look carefully you will see in the welcome dialog:
+
+> Note: This installation program will not install cable drivers on Linux. This item will need to be installed separately, with administrative privileges.
+
+We only need to install Devices->Production Devices->SoCs->Zynq-7000
+
+After installed, it takes 44GB.
+
+## Install without GUI
+
+### Generate the config file
+
+```
+./xsetup -b ConfigGen -p 'Vivado' -e 'Vivado ML Standard' -l $HOME/tools/Xilinx
+```
+
+Find it as `~/.Xilinx/install_config.txt`, tail it to meet your need. The one matters most to me is to make sure only Zynq-7000 is selected.
+
+You can use [this template](./vivado_install_config.txt) as a reference.
+
+### To install with config file
+
+```bash
+./xsetup --agree XilinxEULA,3rdPartyEULA --batch Install --config ~/.Xilinx/install_config.txt
+```
+
+## Add Vivado into search PATH
+
+Add `/home/engineer/tools/Xilinx/Vivado/2024.1/bin` into `$PATH` so that you can run `vivado`
+
+```bash
+cat <<eof >> ~/.profile
+
+# set PATH if vivado 2024.1 installed
+if [ -d "\$HOME/tools/Xilinx/Vivado/2024.1/bin" ]; then
+    PATH="\$HOME/tools/Xilinx/Vivado/2024.1/bin:\$PATH"
+fi
+eof
+
+source ~/.profile
+```
+
+## install drivers to recognize the PYNQ Z-1 board
+
+```bash
+sudo ~/tools/Xilinx/Vivado/2024.1/data/xicom/cable_drivers/lin64/install_script/install_drivers/install_drivers
+```
+
+## fix lib deps
+
+When you see:
+
+> couldn't load file "librdi_commontasks.so": libtinfo.so.5: cannot open shared object file: No such file or directory
+
+Since we are running ubuntu 22.04.4 LTS, and most likely the libtinfo 6 is installed already. We just use it.
+
+```bash
+pushd /lib/x86_64-linux-gnu && sudo ln -s libtinfo.so.6 libtinfo.so.5 && popd
+```
+
+## verify installation
+
+### install deps
+
+```bash
+sudo apt install make
+```
+
+```bash
+git clone https://github.com/eecsmap/fpga_101`
+cd fpga_101/01_button_led/src`
+make
+```
+
+If it works, then you should be able to push the right most little button at the bottom of the PYNQ Z-1 board to light the led above it.
+ 
+--------
+
+# Install Vivado 2023.2 on Ubuntu 23.10
+
+This was originally written for vivado 2023.2 on ubuntu 23.10. It proves working with vivado 2024.1 on ubuntu 24.04 too.
 
 ## setup on Ubuntu (23.10)
 1. download latest Vivado ML installer from https://www.xilinx.com/support/download.html (for now it is [2023.2](https://www.xilinx.com/member/forms/download/xef.html?filename=FPGAs_AdaptiveSoCs_Unified_2023.2_1013_2256_Lin64.bin))
