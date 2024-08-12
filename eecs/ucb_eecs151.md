@@ -65,7 +65,7 @@ Find it as `~/.Xilinx/install_config.txt`, tail it to meet your need. The one ma
 
 You can use [this template](./vivado_install_config.txt) as a reference.
 
-### To install with config file
+### Install with config file
 
 ```bash
 ./xsetup --agree XilinxEULA,3rdPartyEULA --batch Install --config ~/.Xilinx/install_config.txt
@@ -90,7 +90,7 @@ eof
 source ~/.profile
 ```
 
-## install drivers to recognize the PYNQ Z-1 board
+## Install drivers to recognize the PYNQ Z-1 board
 
 Without this step, your lab/project will fail on `make program` when it tries to write bitstream onto the device.
 
@@ -101,7 +101,7 @@ sudo ~/tools/Xilinx/Vivado/2024.1/data/xicom/cable_drivers/lin64/install_script/
 ![Screenshot from 2024-08-11 16-02-13](https://github.com/user-attachments/assets/1b59b3a1-06fd-4940-b7c1-206f736072b2)
 
 
-## fix lib deps
+## Fix lib deps
 
 When you see:
 
@@ -113,22 +113,17 @@ Since we are running ubuntu 22.04.4 LTS, and most likely the libtinfo 6 is insta
 pushd /lib/x86_64-linux-gnu && sudo ln -s libtinfo.so.6 libtinfo.so.5 && popd
 ```
 
-## verify installation
-
-### install deps
+## Verify installation without a need of GUI
 
 ```bash
 sudo apt install make
-```
-
-```bash
 git clone https://github.com/eecsmap/fpga_101`
 cd fpga_101/01_button_led/src`
 make
 ```
 
 If it works, then you should be able to push the right most little button at the bottom of the PYNQ Z-1 board to light the led above it.
- 
+
 --------
 
 # Verify your installation
