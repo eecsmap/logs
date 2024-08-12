@@ -52,8 +52,6 @@ After installed, it takes 44GB.
 ./xsetup -b ConfigGen -p 'Vivado' -e 'Vivado ML Standard' -l $HOME/tools/Xilinx
 ```
 
-
-
 Find it as `~/.Xilinx/install_config.txt`, tail it to meet your need. The one matters most to me is to make sure only Zynq-7000 is selected.
 
 You can use [this template](./vivado_install_config.txt) as a reference.
@@ -63,6 +61,9 @@ You can use [this template](./vivado_install_config.txt) as a reference.
 ```bash
 ./xsetup --agree XilinxEULA,3rdPartyEULA --batch Install --config ~/.Xilinx/install_config.txt
 ```
+
+![Screenshot from 2024-08-11 16-00-35](https://github.com/user-attachments/assets/64b50ab7-87e4-421c-9973-2aedf902d32b)
+
 
 ## Add Vivado into search PATH
 
@@ -82,9 +83,14 @@ source ~/.profile
 
 ## install drivers to recognize the PYNQ Z-1 board
 
+Without this step, your lab/project will fail on `make program` when it tries to write bitstream onto the device.
+
 ```bash
 sudo ~/tools/Xilinx/Vivado/2024.1/data/xicom/cable_drivers/lin64/install_script/install_drivers/install_drivers
 ```
+
+![Screenshot from 2024-08-11 16-02-13](https://github.com/user-attachments/assets/1b59b3a1-06fd-4940-b7c1-206f736072b2)
+
 
 ## fix lib deps
 
