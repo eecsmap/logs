@@ -125,40 +125,16 @@ If it works, then you should be able to push the right most little button at the
  
 --------
 
-# Install Vivado 2023.2 on Ubuntu 23.10
+# Verify your installation
 
-This was originally written for vivado 2023.2 on ubuntu 23.10. It proves working with vivado 2024.1 on ubuntu 24.04 too.
-
-## setup on Ubuntu (23.10)
-1. download latest Vivado ML installer from https://www.xilinx.com/support/download.html (for now it is [2023.2](https://www.xilinx.com/member/forms/download/xef.html?filename=FPGAs_AdaptiveSoCs_Unified_2023.2_1013_2256_Lin64.bin))
-* `sudo bash {your_installer_file}.bin` and install it to `/opt/Xilinx` with options as the following screenshot
-* ![image](https://github.com/eecsmap/logs/assets/71915887/d7d2e6e7-ab4b-4a32-9c49-7cabf5c1ecc6)
-* add `/opt/Xilinx/Vivado/2023.2/bin` into $PATH so that you can run `vivado`
-* if running `vivado` complains missing of libtinfo, then
-  * `cd /lib/x86_64-linux-gnu/ && sudo ln -s libtinfo.so libtinfo.so.5`
-  * `sudo ln -s libtinfo.so.6 libtinfo.so.5` in vivado 2024.1
-* try verify the setup with instructions in section **verify**
-* We do NOT need it with vivado 2023.2 or 2024.1:
-  * `git clone https://github.com/cathalmccabe/pynq-z1_board_files`
-  * then copy pynq-z1 into {Vivado install directory}\data\boards\board_files, if board_files does not exist, create it.
-* This is necessary: https://digilent.com/reference/programmable-logic/guides/install-cable-drivers (otherwise hardware manager can not recognize the target board)
-  * `/tools/Xilinx/Vivado/2023.2/data/xicom/cable_drivers/lin64/install_script/install_drivers$ sudo ./install_drivers`
-
-to allow using screen to the serial terminal
-```
-sudo adduser $USER dialout
-```
-
-![image](https://github.com/eecsmap/logs/assets/71915887/85b2fa8f-4c0e-434a-9f46-8e2ccbe69170)
-
-## verify
+## verify without a GUI
 ![image](https://github.com/eecsmap/logs/assets/71915887/2b7cb51b-733d-49de-8fa6-264e71f181da)
 
 * `git clone https://github.com/eecsmap/fpga_101`
 * `cd fpga_101/01_button_led/src`
 * `make build`
 
-## or you can verify with a vivado project
+## Verify with a Vivado project
 * launch vivado
 * create a new RTL project
 ![image](https://github.com/eecsmap/logs/assets/71915887/03205fc5-b504-46a7-aa59-5d30cd970d5a)
@@ -185,6 +161,10 @@ set_property -dict {PACKAGE_PIN R14 IOSTANDARD LVCMOS33} [get_ports {led}]
 * open target and auto connect
 ![image](https://github.com/eecsmap/logs/assets/71915887/36c7ea75-e592-4364-9382-e366a01aab7d)
 * program device and verify the function on board
+
+----
+
+# UCB EECS151 Notes
 
 ## prepare the labs and project
 Create private clone of labs and project as:
