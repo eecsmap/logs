@@ -14,3 +14,7 @@ Game
 ====
 * [ ] [scratch](https://scratch.mit.edu/)
   * [ ] [cs50 pset0](https://cs50.harvard.edu/x/2023/psets/0/scratch/)
+
+
+# Applications
+* [ ] [codecrafters.io](https://codecrafters.io/)

@@ -10,6 +10,10 @@ Design Patterns
 Books
 =====
 * [ ] [ddia](https://vonng.gitbook.io/vonng/)
+* [ ] [Clean Code]()
+* [ ] [Working Effectively with Legacy Code]()
+* [ ] [The Pragmatic Programmer]()
+* [ ] [The Art of Unit Testing]()
 
 Tools
 =====
