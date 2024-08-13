@@ -4,7 +4,13 @@ According to https://docs.amd.com/r/en-US/ug973-vivado-release-notes-install-lic
 , the most recent ubuntu version supported by Vivado 2024.1 is the 22.04.3 LTS.
 But it works fine on ubuntu 22.04.4 LTS.
 
-## Download FPGAs_AdaptiveSoCs_Unified_2024.1_0522_2023.tar.gz
+## Download the installer
+
+download Vivado ML installer from https://www.xilinx.com/support/download.html
+
+At the time of this writing, the most recent version is 2024.1.
+
+The package file is FPGAs_AdaptiveSoCs_Unified_2024.1_0522_2023.tar.gz
 
 It is about 108GB.
 
@@ -33,7 +39,17 @@ If you look carefully you will see in the welcome dialog:
 
 > Note: This installation program will not install cable drivers on Linux. This item will need to be installed separately, with administrative privileges.
 
-We only need to install Devices->Production Devices->SoCs->Zynq-7000
+This is why we are going to install the drivers later.
+
+Now we are going to install page by page. We only need to install Devices->Production Devices->SoCs->Zynq-7000
+
+![Screenshot from 2024-08-11 15-43-07](https://github.com/user-attachments/assets/7e9ff32e-2cee-4d67-9a04-d18af06a0c43)
+![Screenshot from 2024-08-11 15-43-21](https://github.com/user-attachments/assets/1c68aafd-58d4-4c06-9a24-8158290bf311)
+![Screenshot from 2024-08-11 15-43-24](https://github.com/user-attachments/assets/847a5766-5bd3-4793-87b2-3483da65737f)
+![Screenshot from 2024-08-11 15-43-53](https://github.com/user-attachments/assets/39ebf9df-2d2f-4fe5-8aec-f9daefa9eed7)
+![Screenshot from 2024-08-11 15-44-25](https://github.com/user-attachments/assets/5b9226f2-b671-4120-b1cb-5284207bb4c3)
+![Screenshot from 2024-08-11 15-45-54](https://github.com/user-attachments/assets/06cfd5ff-833d-4a49-a42f-7ca53b12fe61)
+![Screenshot from 2024-08-11 15-45-59](https://github.com/user-attachments/assets/47cdf962-f8e7-4200-8460-6612c1509250)
 
 After installed, it takes 44GB.
 
@@ -49,11 +65,14 @@ Find it as `~/.Xilinx/install_config.txt`, tail it to meet your need. The one ma
 
 You can use [this template](./vivado_install_config.txt) as a reference.
 
-### To install with config file
+### Install with config file
 
 ```bash
 ./xsetup --agree XilinxEULA,3rdPartyEULA --batch Install --config ~/.Xilinx/install_config.txt
 ```
+
+![Screenshot from 2024-08-11 16-00-35](https://github.com/user-attachments/assets/64b50ab7-87e4-421c-9973-2aedf902d32b)
+
 
 ## Add Vivado into search PATH
 
@@ -71,13 +90,18 @@ eof
 source ~/.profile
 ```
 
-## install drivers to recognize the PYNQ Z-1 board
+## Install drivers to recognize the PYNQ Z-1 board
+
+Without this step, your lab/project will fail on `make program` when it tries to write bitstream onto the device.
 
 ```bash
 sudo ~/tools/Xilinx/Vivado/2024.1/data/xicom/cable_drivers/lin64/install_script/install_drivers/install_drivers
 ```
 
-## fix lib deps
+![Screenshot from 2024-08-11 16-02-13](https://github.com/user-attachments/assets/1b59b3a1-06fd-4940-b7c1-206f736072b2)
+
+
+## Fix lib deps
 
 When you see:
 
@@ -89,63 +113,27 @@ Since we are running ubuntu 22.04.4 LTS, and most likely the libtinfo 6 is insta
 pushd /lib/x86_64-linux-gnu && sudo ln -s libtinfo.so.6 libtinfo.so.5 && popd
 ```
 
-## verify installation
-
-### install deps
+## Verify installation without a need of GUI
 
 ```bash
 sudo apt install make
-```
-
-```bash
 git clone https://github.com/eecsmap/fpga_101`
 cd fpga_101/01_button_led/src`
 make
 ```
 
 If it works, then you should be able to push the right most little button at the bottom of the PYNQ Z-1 board to light the led above it.
- 
+
 --------
 
-# Install Vivado 2023.2 on Ubuntu 23.10
+# Verify your installation with a Vivado project
 
-This was originally written for vivado 2023.2 on ubuntu 23.10. It proves working with vivado 2024.1 on ubuntu 24.04 too.
-
-## setup on Ubuntu (23.10)
-1. download latest Vivado ML installer from https://www.xilinx.com/support/download.html (for now it is [2023.2](https://www.xilinx.com/member/forms/download/xef.html?filename=FPGAs_AdaptiveSoCs_Unified_2023.2_1013_2256_Lin64.bin))
-* `sudo bash {your_installer_file}.bin` and install it to `/opt/Xilinx` with options as the following screenshot
-* ![image](https://github.com/eecsmap/logs/assets/71915887/d7d2e6e7-ab4b-4a32-9c49-7cabf5c1ecc6)
-* add `/opt/Xilinx/Vivado/2023.2/bin` into $PATH so that you can run `vivado`
-* if running `vivado` complains missing of libtinfo, then
-  * `cd /lib/x86_64-linux-gnu/ && sudo ln -s libtinfo.so libtinfo.so.5`
-  * `sudo ln -s libtinfo.so.6 libtinfo.so.5` in vivado 2024.1
-* try verify the setup with instructions in section **verify**
-* We do NOT need it with vivado 2023.2 or 2024.1:
-  * `git clone https://github.com/cathalmccabe/pynq-z1_board_files`
-  * then copy pynq-z1 into {Vivado install directory}\data\boards\board_files, if board_files does not exist, create it.
-* This is necessary: https://digilent.com/reference/programmable-logic/guides/install-cable-drivers (otherwise hardware manager can not recognize the target board)
-  * `/tools/Xilinx/Vivado/2023.2/data/xicom/cable_drivers/lin64/install_script/install_drivers$ sudo ./install_drivers`
-
-to allow using screen to the serial terminal
-```
-sudo adduser $USER dialout
-```
-
-![image](https://github.com/eecsmap/logs/assets/71915887/85b2fa8f-4c0e-434a-9f46-8e2ccbe69170)
-
-## verify
-![image](https://github.com/eecsmap/logs/assets/71915887/2b7cb51b-733d-49de-8fa6-264e71f181da)
-
-* `git clone https://github.com/eecsmap/fpga_101`
-* `cd fpga_101/01_button_led/src`
-* `make build`
-
-## or you can verify with a vivado project
 * launch vivado
 * create a new RTL project
 ![image](https://github.com/eecsmap/logs/assets/71915887/03205fc5-b504-46a7-aa59-5d30cd970d5a)
 ![image](https://github.com/eecsmap/logs/assets/71915887/56abc386-6b70-4cff-9aef-1cc30de233dc)
 * add a top module file: top.v
+
 ```
 module top(
     input button,
@@ -154,11 +142,14 @@ module top(
     assign led = button;
 endmodule
 ```
+
 * add the constraints file: constraints.xdc
+
 ```
 set_property -dict {PACKAGE_PIN D19 IOSTANDARD LVCMOS33} [get_ports {button}]
 set_property -dict {PACKAGE_PIN R14 IOSTANDARD LVCMOS33} [get_ports {led}]
 ```
+
 * pick up the part: `xc7z020clg400-1`
 ![image](https://github.com/eecsmap/logs/assets/71915887/bed249fe-8cc5-46bc-9eda-a962be52d4ff)
 * generate bitstream
@@ -167,6 +158,10 @@ set_property -dict {PACKAGE_PIN R14 IOSTANDARD LVCMOS33} [get_ports {led}]
 * open target and auto connect
 ![image](https://github.com/eecsmap/logs/assets/71915887/36c7ea75-e592-4364-9382-e366a01aab7d)
 * program device and verify the function on board
+
+----
+
+# UCB EECS151 Notes
 
 ## prepare the labs and project
 Create private clone of labs and project as:
