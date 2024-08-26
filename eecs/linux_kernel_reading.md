@@ -13,4 +13,9 @@ Edit the /etc/apt/sources.list
 
 * change us.releases.ubuntu and security.ubuntu to old-releases.ubuntu
 * sudo apt-get update
-* 
+
+find the linux kernel images
+
+`sudo apt-cache search linux-image`
+
+
