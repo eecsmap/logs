@@ -2,7 +2,7 @@
 # Usage:
 # Once you have the installer package extracted, change dir into it.
 # Then run:
-# ./xsetup --agree XilinxEULA,3rdPartyEULA --batch Install --config vivado_install_config.txt
+# ./xsetup --agree XilinxEULA,3rdPartyEULA --batch Install --config ~/.Xilinx/vivado_install_config.txt
 # Then add /tools/Xilinx/Vivado/2024.1/bin into $PATH
 
 #### Vivado ML Standard Install Configuration ####
