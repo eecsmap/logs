@@ -286,18 +286,14 @@ sudo apt-get install git make
 
 ## project
 
-run
-```
-sudo apt install gcc-riscv64-unknown-elf
-sudo apt install python3-pip
-pip install pyserial
-```
+Update submodules:
 
 ```
 git submodule update --init --recursive
 ```
 
-under software folder, run
+under software folder, run:
+
 ```
 cd software
 for i in `ls`; do (cd $i && make -B); done
@@ -309,47 +305,98 @@ if you run into errors like:
 
 ```
 Error: unrecognized opcode `csrw 0x51e,a5', extension `zicsr' required
+Error: unrecognized opcode `fence.i', extension `zifencei' required
 ```
 
-Update file `software/Makefrag`, change `-march=rv32i` to `-march=rv32i_zicsr` in `GCC_OPTS`
+Update file `software/Makefrag` and `software/riscv-isa-tests/Makefile`, change `-march=rv32i` to `-march=rv32i_zicsr_zifencei` in `GCC_OPTS`.
+Or you can search `-march=rv32i` and replace it as `-march=rv32i_zicsr_zifencei`.
+
+If `make: riscv64-unknown-elf-gcc: No such file or directory`
+
+* run `sudo apt install gcc-riscv64-unknown-elf`.
+
+If `make: riscv64-unknown-elf-bin2hex: No such file or directory`:
+
+* get a copy of https://github.com/sifive/elf2hex/blob/master/freedom-bin2hex.py
+* save it as `/usr/bin/riscv64-unknown-elf-bin2hex`
+* add a line to its front with content: `#!/usr/bin/env python3`
+* run `chmod a+x /usr/bin/riscv64-unknown-elf-bin2hex`
+* NOTE: it is part of a elf2hex project https://github.com/sifive/elf2hex, but here we don't need the whole thing.
+
+```
+sudo apt install python3-pip
+pip install pyserial
+```
 
 before testing using
 ```
 cd software/riscv-isa-tests && make
 ```
 
-issue:
-```
-riscv64-unknown-elf-bin2hex: command not found
-```
-copy a python script from eda server and rename it to this name. Find it in dropbox/shared/courses/ucb/eecs151/eecs151_fa22/
+install iverilog for hardware design
 
-actually you can follow here: https://inst.eecs.berkeley.edu/~eecs151/fa23/static/fpga/project/docs/local_dev/
-
-```
-complains about:
-* extension `zifencei' required
-* extension zicsr' required
-```
-search `-march=rv32i` and replace it as `-march=rv32i_zicsr_zifencei`
-
-install iverilog
 ```
 sudo apt install iverilog
 ```
 
 run
 ```
+cd hardware
 make sim/cpu_tb.fst -B
 make isa-tests -B && grep -r -i "\(timeout\)\|\(failed\)" sim/isa/*.log
 make c-tests -B
 make sim/echo_tb.fst -B
 make sim/uart_parse_tb.fst -B
 make sim/bios_tb.fst -B
+```
+
+Prepare serial communication:
+run
+```
+sudo apt install screen
+sudo usermod -aG dialout $USER
+```
+
+build program:
+
+```
+make program
+```
+
+Then load echo program:
+```
 ./scripts/hex_to_serial ../software/echo/echo.hex 30000000
+```
+
+connect serial port:
+```
+screen /dev/ttyUSB0 115200
+```
+
+Type `jal 10000000` after the prompt, if you did not see the prompt `151>`, press `enter` key:
+
+```
 151> jal 10000000
+(now you can type and see the echo)
+```
+
+Run another program:
+```
 (cd ../software/mmult/ && make)
 ./scripts/hex_to_serial ../software/mmult/mmult.hex 30000000
+```
+
+check in screen:
+
+```
+make program
+make screen
+151> jal 10000000
+Result: 0001f800
+Cycle Count: 00000000
+Instruction Count: 00000000
+Branch Instruction Count: 00000000
+Correct Branch Prediction Count: 00000000
 ```
 
 checkpoint 1&2 done!
