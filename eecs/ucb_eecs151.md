@@ -117,8 +117,8 @@ pushd /lib/x86_64-linux-gnu && sudo ln -s libtinfo.so.6 libtinfo.so.5 && popd
 
 ```bash
 sudo apt install make
-git clone https://github.com/eecsmap/fpga_101`
-cd fpga_101/01_button_led/src`
+git clone https://github.com/eecsmap/fpga_101
+cd fpga_101/01_button_led/src
 make
 ```
 
@@ -304,6 +304,14 @@ for i in `ls`; do (cd $i && make -B); done
 cd c_tests
 for i in `ls`; do (cd $i && make -B); done
 ```
+
+if you run into errors like:
+
+```
+Error: unrecognized opcode `csrw 0x51e,a5', extension `zicsr' required
+```
+
+Update file `software/Makefrag`, change `-march=rv32i` to `-march=rv32i_zicsr` in `GCC_OPTS`
 
 before testing using
 ```
