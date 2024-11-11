@@ -301,6 +301,10 @@ cd c_tests
 for i in `ls`; do (cd $i && make -B); done
 ```
 
+If `make: riscv64-unknown-elf-gcc: No such file or directory`
+
+* run `sudo apt install gcc-riscv64-unknown-elf`.
+
 if you run into errors like:
 
 ```
@@ -311,10 +315,6 @@ Error: unrecognized opcode `fence.i', extension `zifencei' required
 Update file `software/Makefrag` and `software/riscv-isa-tests/Makefile`, change `-march=rv32i` to `-march=rv32i_zicsr_zifencei` in `GCC_OPTS`.
 Or you can search `-march=rv32i` and replace it as `-march=rv32i_zicsr_zifencei`.
 
-If `make: riscv64-unknown-elf-gcc: No such file or directory`
-
-* run `sudo apt install gcc-riscv64-unknown-elf`.
-
 If `make: riscv64-unknown-elf-bin2hex: No such file or directory`:
 
 * get a copy of https://github.com/sifive/elf2hex/blob/master/freedom-bin2hex.py
@@ -322,6 +322,8 @@ If `make: riscv64-unknown-elf-bin2hex: No such file or directory`:
 * add a line to its front with content: `#!/usr/bin/env python3`
 * run `chmod a+x /usr/bin/riscv64-unknown-elf-bin2hex`
 * NOTE: it is part of a elf2hex project https://github.com/sifive/elf2hex, but here we don't need the whole thing.
+
+If your python does not have `serial` lib installed, install it:
 
 ```
 sudo apt install python3-pip
